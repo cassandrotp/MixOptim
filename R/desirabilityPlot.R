@@ -2,14 +2,14 @@
 #'
 #' This function creates a graphical representation of the desirability profiles
 #' within the data range. It requires a data frame object generated from
-#' an optimization function. You can use a simpler data frame to plot the lines display a more
-#' and present a more accurate data from another optimization call.
+#' an optimization function. You can use a simpler data frame to plot the lines and
+#' present a more accurate data from another optimization call.
 #'
 #' @param functions An array of functions
 #' @param plotData A data frame generated from an optimization function
 #' @param bestValues The optimal mixture composition to be presented
 #' @param desirab An array of desirability functions
-#' @param types An array of strings containing the attributo to be shown for each desirability function. Currently only accepts "max" or "min"
+#' @param types An array of strings containing the attributes to be shown for each desirability function. Currently only accepts \code{"max"} or \code{"min"}
 #' @return A ggplot composite object from patchwork
 #' @export
 desirabilityPlot <- function(functions, plotData, bestValues, desirab, types) {
@@ -65,9 +65,9 @@ desirabilityPlot <- function(functions, plotData, bestValues, desirab, types) {
         }
       }
 
-      pvDData = data.frame(input = seq(from = desirab[[i]]$low, to = desirab[[i]]$high, length = 100))
-      pvDData$output <- predict(desirab[[i]], pvDData$input)
-      des1 <- ggplot(pvDData, aes(x = input, y = output)) + geom_line() +
+      pvDData <- data.frame(inp = seq(from = desirab[[i]]$low, to = desirab[[i]]$high, length = 100))
+      pvDData$outp <- predict(desirab[[i]], pvDData$inp)
+      des1 <- ggplot(pvDData, aes(x = inp, y = outp)) + geom_line() +
         theme_bw() + labs(y="Desirability") + scale_y_continuous(position = "right")
       p <- p + des1;
 
@@ -90,9 +90,9 @@ desirabilityPlot <- function(functions, plotData, bestValues, desirab, types) {
           p <- p + p2
         }
       }
-      pvDData = data.frame(input = seq(from = desirab[[i]]$low, to = desirab[[i]]$high, length = 100))
-      pvDData$output <- predict(desirab[[i]], pvDData$input)
-      des1 <- ggplot(pvDData, aes(x = input, y = output)) + geom_line() +
+      pvDData <- data.frame(inp = seq(from = desirab[[i]]$low, to = desirab[[i]]$high, length = 100))
+      pvDData$outp <- predict(desirab[[i]], pvDData$inp)
+      des1 <- ggplot(pvDData, aes(x = inp, y = outp)) + geom_line() +
         theme_bw() + labs(y="Desirability") + scale_y_continuous(position = "right")
       p <- p + des1;
     }

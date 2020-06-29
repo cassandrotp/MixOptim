@@ -15,7 +15,7 @@ desirabilityPlot(functions, plotData, bestValues, desirab, types)
 
 \item{desirab}{An array of desirability functions}
 
-\item{types}{An array of strings containing the attributo to be shown for each desirability function. Currently only accepts "max" or "min"}
+\item{types}{An array of strings containing the attributes to be shown for each desirability function. Currently only accepts \code{"max"} or \code{"min"}}
 }
 \value{
 A ggplot composite object from patchwork
@@ -23,6 +23,6 @@ A ggplot composite object from patchwork
 \description{
 This function creates a graphical representation of the desirability profiles
 within the data range. It requires a data frame object generated from
-an optimization function. You can use a simpler data frame to plot the lines display a more
-and present a more accurate data from another optimization call.
+an optimization function. You can use a simpler data frame to plot the lines and
+present a more accurate data from another optimization call.
 }

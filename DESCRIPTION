@@ -1,11 +1,11 @@
 Package: MixOptim
 Type: Package
-Title: Mixture optmization algorithm
-Version: 0.1.0
+Title: Mixture Optimization Algorithm
+Version: 0.1.2
 Author: Cassandro Davi Emer
 Maintainer: Cassandro Davi Emer <cde@actisys.org>
-Description: MixOptim is a simple package to perform mixture optimization based on the 'desirability' package by Max Kuhn.
-    It also provides a plot routine using ggplot and patchwork.
+Description: Simple tools to perform mixture optimization based on the 'desirability' package by Max Kuhn.
+    It also provides a plot routine using 'ggplot2' and 'patchwork'.
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
@@ -15,3 +15,4 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+Imports: rlang

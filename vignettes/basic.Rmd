@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette demonstrates the basic usage of MixExp functions to perform a basic optimization and plot.
+This vignette demonstrates the basic usage of MixOptim functions to perform a basic optimization and plot.
 
 # Basic usage
 
@@ -39,10 +39,11 @@ a <- mixtureOptim(funcoes, overallD, 3, step = 0.01, plot = T)
 desirabilityPlot(funcoes, a$plotData, a$bestComposition, list(saD, pvD), c("min", "max"))
 ```
 
-If the user want to get a more accurate composition, it is possible to do an optimization within a specific ranged based on previous values:
+If the user want to get a more accurate composition, it is possible to do an optimization within a specific range (points +- alpha) based on previous values:
 
 ```{r}
 b <- mixtureFineOptim(funcoes, overallD, startPoint = a$bestComposition, step = 0.0001, alpha = 0.015)
+b
 desirabilityPlot(funcoes, a$plotData, b$bestComposition, list(saD, pvD), c("min", "max"))
 ```
 
@@ -136,6 +137,7 @@ desirabilityPlot(funcoes2, teste$plotData, teste$bestComposition, list(des1, des
 
 # more accurate optimization within +- 0.02 (default value for alpha)
 teste2 <- mixtureFineOptim(funcoes2, finalD, teste$bestComposition, step = 0.0001)
+teste2
 # plot
 desirabilityPlot(funcoes2, teste$plotData, teste2$bestComposition, list(des1, des2, des3), c("max", "max", "min"))
 ```
