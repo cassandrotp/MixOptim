@@ -5,24 +5,26 @@
 \title{Performs a specific range optimization}
 \usage{
 mixtureRangeOptim(
-  funcoes,
-  modeloDesej,
+  functions,
+  desirabilityModel,
   midPoints,
   alpha,
-  passo = 0.01,
+  step = 0.01,
   plot = T
 )
 }
 \arguments{
-\item{alpha}{Defines the range of the seach, as startPoint +- alpha for each x value}
-
 \item{functions}{An array of functions}
 
 \item{desirabilityModel}{A desirability overallD model}
 
-\item{startPoint}{An array with the references (mid-points) for the optimization}
+\item{midPoints}{An array with the references (mid-points) for the optimization}
+
+\item{alpha}{Defines the range of the seach, as startPoint +- alpha for each x value}
 
 \item{step}{The ammount of each increment in the optimization}
+
+\item{plot}{Define is the data frame that can be used for the desirabilityPlot function will be create. Strongly affects performance}
 }
 \value{
 A list containg the data regarding the maximum desirability found

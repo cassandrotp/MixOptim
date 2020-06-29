@@ -82,9 +82,9 @@ des2<-dMin(min(dados$Scrub), max(dados$Scrub))
 finalD<-dOverall(des1, des2)
 
 # optimize and generate data for plot
-teste <- mixtureRangeOptim(funcoes2, finalD, midPoints = c(0.25, 0.4, 0.5, 0.25), alpha = c(0.2, 0.2, 0.2, 0.2), passo = 0.01, plot=T)
+teste <- mixtureRangeOptim(funcoes2, finalD, midPoints = c(0.25, 0.4, 0.5, 0.25), alpha = c(0.2, 0.2, 0.2, 0.2), step = 0.01, plot=T)
 # find a more accurate value based on previous composition, ingoring the last one and not generating plot data
-teste2 <- mixtureRangeOptim(funcoes2, finalD, midPoints = teste$bestComposition, alpha = c(0.01, 0.01, 0.01, 0), passo = 0.001, plot=F)
+teste2 <- mixtureRangeOptim(funcoes2, finalD, midPoints = teste$bestComposition, alpha = c(0.01, 0.01, 0.01, 0), step = 0.001, plot=F)
 teste2
 
 # plot result
