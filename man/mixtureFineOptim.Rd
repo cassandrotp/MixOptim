@@ -9,7 +9,8 @@ mixtureFineOptim(
   desirabilityModel,
   startPoint,
   step = 0.001,
-  alpha = 0.02
+  alpha = 0.02,
+  verbose = TRUE
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ mixtureFineOptim(
 \item{step}{The ammount of each increment in the optimization}
 
 \item{alpha}{Defines the range of the seach, as \code{startPoint} +- \code{alpha} for each \code{x} value}
+
+\item{verbose}{Defines if the user should be updated with the processing status (percentages)}
 }
 \value{
 A list containg the data regarding the maximum desirability found

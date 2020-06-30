@@ -10,6 +10,7 @@
 #' @param alpha Defines the range of the seach, as \code{startPoint} +- \code{alpha} for each \code{x} value
 #' @param step The ammount of each increment in the optimization
 #' @param plot Define is the data frame that can be used for the \code{desirabilityPlot} function will be create. Strongly affects performance
+#' @param verbose Defines if the user should be updated with the processing status (percentages)
 #' @return A list containg the data regarding the maximum desirability found
 #' @examples
 #'library(MixOptim)
@@ -57,7 +58,7 @@
 #'#teste2
 #'#desirabilityPlot(funcoes2, teste$plotData, teste2$bestComposition, list(des1, des2),
 #'#    c("max", "min"))
-mixtureRangeOptim <- function(functions, desirabilityModel, midPoints, alpha, step = 0.01, plot = T) {
+mixtureRangeOptim <- function(functions, desirabilityModel, midPoints, alpha, step = 0.01, plot = TRUE, verbose = TRUE) {
 
     misturaRecursao <- function(functions, desirabilityModel, step, level, value, plot) {
     value[level] = midPoints[level] + alpha[level]
@@ -76,6 +77,7 @@ mixtureRangeOptim <- function(functions, desirabilityModel, midPoints, alpha, st
         if(plot)
           grafico <<- rbind(grafico, c(value, tmp, valores))
         if(tmp > best) {
+          # not acessing global enviroment, just the upper scope -- the main function
           best <<- tmp
           bestValues <<- value
         }
@@ -94,7 +96,9 @@ mixtureRangeOptim <- function(functions, desirabilityModel, midPoints, alpha, st
     grafico <- data.frame()
   }
   bestValues <- midPoints
-  cat("Optimizing values.. 0 %.. ")
+  if(verbose) {
+    message("Optimizing values.. 0 %.. ")
+  }
   if(length(midPoints) > 0) {
     vetor <- midPoints - alpha
     #print(vetor)
@@ -105,10 +109,8 @@ mixtureRangeOptim <- function(functions, desirabilityModel, midPoints, alpha, st
       vetor[1] = vetor[1] + step
       count = count + 1
       perc = (count * 100.0) / steps
-      if(perc %% 10 == 0) {
-        cat(paste(perc,"%.. "))
-      } else {
-        #cat(".")
+      if(verbose) if(perc %% 10 == 0) {
+        message(paste(perc,"%.. "))
       }
     }
   }

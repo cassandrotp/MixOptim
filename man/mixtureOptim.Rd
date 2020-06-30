@@ -4,7 +4,14 @@
 \alias{mixtureOptim}
 \title{Performs a full interval optimization}
 \usage{
-mixtureOptim(functions, desirabilityModel, xCount, step = 0.01, plot = TRUE)
+mixtureOptim(
+  functions,
+  desirabilityModel,
+  xCount,
+  step = 0.01,
+  plot = TRUE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{functions}{An array of functions}
@@ -16,6 +23,8 @@ mixtureOptim(functions, desirabilityModel, xCount, step = 0.01, plot = TRUE)
 \item{step}{The ammount of each increment in the optimization}
 
 \item{plot}{Define is the data frame that can be used for the \code{desirabilityPlot} function will be create. Strongly affects performance}
+
+\item{verbose}{Defines if the user should be updated with the processing status (percentages)}
 }
 \value{
 A list containg the data regarding the maximum desirability found

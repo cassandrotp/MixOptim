@@ -8,6 +8,7 @@
 #' @param xCount The amount of \code{x} variables used in the functions
 #' @param step The ammount of each increment in the optimization
 #' @param plot Define is the data frame that can be used for the \code{desirabilityPlot} function will be create. Strongly affects performance
+#' @param verbose Defines if the user should be updated with the processing status (percentages)
 #' @return A list containg the data regarding the maximum desirability found
 #' @examples
 #'library(MixOptim)
@@ -26,7 +27,7 @@
 #'a$bestComposition
 #'# next line will generate a ggplot/patchwork grid
 #'#desirabilityPlot(funcoes, a$plotData, a$bestComposition, list(saD, pvD), c("min", "max"))
-mixtureOptim <- function(functions, desirabilityModel, xCount, step = 0.01, plot = TRUE) {
+mixtureOptim <- function(functions, desirabilityModel, xCount, step = 0.01, plot = TRUE, verbose = TRUE) {
 
   misturaRecursao <- function(functions, desirabilityModel, step, level, value, plot) {
     gap <- 1.0 - sum(value)
@@ -41,6 +42,7 @@ mixtureOptim <- function(functions, desirabilityModel, xCount, step = 0.01, plot
       if(plot)
         grafico <<- rbind(grafico, c(value, tmp, valores))
       if(tmp > best) {
+        # not acessing global enviroment, just the upper scope -- the main function
         best <<- tmp
         bestValues <<- value
       }
@@ -58,7 +60,9 @@ mixtureOptim <- function(functions, desirabilityModel, xCount, step = 0.01, plot
     grafico <- data.frame()
   }
   bestValues <- rep(0, xCount)
-  cat("Optimizing values.. 0 % ")
+  if(verbose) {
+    message("Optimizing values.. 0 % ")
+  }
   if(xCount > 0) {
     vetor <- rep(0, xCount)
     count <- 0
@@ -66,10 +70,10 @@ mixtureOptim <- function(functions, desirabilityModel, xCount, step = 0.01, plot
       misturaRecursao(functions, desirabilityModel, step, 2, vetor, plot)
       vetor[1] = vetor[1] + step
       count = count + 1
-      if(count %% 10 == 0) {
-        cat(paste(count,"% "))
-      } else {
-        cat(".")
+      if(verbose) {
+        if(count %% 10 == 0) {
+          message(paste(count,"% "))
+        }
       }
     }
   }
